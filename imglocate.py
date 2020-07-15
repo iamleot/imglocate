@@ -101,7 +101,7 @@ def read_config() -> dict:
      - config: path to the deep learning network config
      - labels: path to the labels of the classes returned by the deep learning
                network. There should be one label per line.
-     - confidence_threshold: confidence threshould
+     - confidence_threshold: confidence threshold
      - nms_threshold: NMS (Non-Maximum Suppression) threshold
 
     If the file is not present or a configuration entry is missing the program
