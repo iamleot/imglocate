@@ -78,9 +78,9 @@ def read_annotations(filename: str) -> List[tuple]:
                     label, confidence, x, y, height, width = row
                     annotations.append((str(label), int(x), int(y),
                                         int(height), int(width)))
-    except:
-        print('Could not open {filename}, ignoring'.format(filename=filename),
-              file=sys.stderr)
+    except OSError as e:
+        print('Could not open {filename}: {e}, ignoring'.format(
+              filename=filename, e=e), file=sys.stderr)
 
     return annotations
 
