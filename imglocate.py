@@ -84,7 +84,7 @@ def read_annotations(filename: str) -> List[tuple]:
                     annotations.append((str(label), int(x), int(y),
                                         int(height), int(width)))
     except OSError as e:
-        logger.warning('Could not open %s: %s, ignoring', filename, e)
+        logging.warning('Could not open %s: %s, ignoring', filename, e)
 
     return annotations
 
