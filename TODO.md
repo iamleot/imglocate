@@ -5,3 +5,4 @@ There are several known (and probably unknown) bugs:
 ## TODO/Known bugs
 
  - More gracefully handle possible exceptions/errors
+ - Add a `setup.py`
