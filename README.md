@@ -36,3 +36,21 @@ labels = ~/.imglocate/yolov3.labels
 confidence_threshold = 0.2
 nms_threshold = 0.3
 ```
+
+
+## Usage
+
+```
+% imglocate -h
+usage: imglocate [-h] {annotate,search} ...
+
+Locate objects in images
+
+positional arguments:
+  {annotate,search}  action
+    annotate         annotate images
+    search           search annotated images
+
+optional arguments:
+  -h, --help         show this help message and exit
+```
