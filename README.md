@@ -13,15 +13,15 @@ bounding box (as an x, y, height, width tuple).
 imglocate needs to be configured before it can be used.
 By default the configuration file `~/.imglocaterc` is used.
 
-The configuration field should have an `[imglocate]' section and should
+The configuration field should have an `[imglocate]` section and should
 contains all the following entries:
 
- - weights: path to the deep learning network weights
- - config: path to the deep learning network config
- - labels: path to the labels of the classes returned by the deep learning
+ - `weights`: path to the deep learning network weights
+ - `config`: path to the deep learning network config
+ - `labels`: path to the labels of the classes returned by the deep learning
    network. There should be one label per line.
- - confidence_threshold: confidence threshold
- - nms_threshold: NMS (Non-Maximum Suppression) threshold
+ - `confidence_threshold`: confidence threshold
+ - `nms_threshold`: NMS (Non-Maximum Suppression) threshold
 
 For example, given `weights`, `config`, `labels` in a `~/.imglocate`
 directory and using [YOLOv3-tiny](https://pjreddie.com/darknet/yolo/),
