@@ -1,4 +1,4 @@
-name: Lint with flake8
+name: Check and test imglocate
 
 on: [push, pull_request]
 
