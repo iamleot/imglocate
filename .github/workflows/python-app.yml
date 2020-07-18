@@ -52,4 +52,8 @@ jobs:
         # copy yolov3.labels accordingly imagelocaterc used
         cp examples/yolov3.labels ~/.imglocate
         # compare existent TSV with imglocate generated one
-        cmp examples/office_at_night.jpg.txt <(./imglocate.py -c examples/imglocaterc annotate -fs examples/office_at_night.jpg | sed -n '2,$p')
+        #cmp examples/office_at_night.jpg.txt <(./imglocate.py -c examples/imglocaterc annotate -fs examples/office_at_night.jpg | sed -n '2,$p')
+        # XXX: debug
+        cat examples/office_at_night.jpg.txt
+        ls -lh ~/.imglocate
+        ./imglocate.py -c examples/imglocaterc annotate -fs examples/office_at_night.jpg
