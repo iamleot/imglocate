@@ -3,10 +3,24 @@ name: Lint with flake8
 on: [push, pull_request]
 
 jobs:
-  build:
-
+  fetch:
     runs-on: ubuntu-latest
+    steps:
+    - name: Cache YOLOv3-tiny cfg and weights
+      id: cache-yolov3-tiny
+      uses: actions/cache@v2
+      with:
+        path: ~/.imglocate
+        key: ${{ runner.os }}-yolov3-tiny
+    - name: Download YOLOv3-tiny cfg and weights
+      if: steps.cache-yolov3-tiny.outputs.cache-hit != 'true'
+      run: |
+        mkdir -p ~/.imglocate
+        curl -Ls -o ~/.imglocate/yolov3-tiny.cfg https://github.com/pjreddie/darknet/raw/master/cfg/yolov3-tiny.cfg
+        curl -Ls -o ~/.imglocate/yolov3-tiny.weights https://pjreddie.com/media/files/yolov3-tiny.weights
 
+  build:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
