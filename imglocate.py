@@ -89,11 +89,12 @@ def read_annotations(filename: str) -> List[tuple]:
     return annotations
 
 
-def read_config() -> dict:
+def read_config(config_file: str = '~/.imglocaterc') -> dict:
     """
-    Read configuration file.
+    Read configuration file config_file.
 
-    Read the configuration file `~/.imglocaterc' via `configparser'.
+    Read the configuration file config_file, if not specified `~/.imglocaterc',
+    via `configparser'.
     The configuration file should have a `[imglocate]' main section and the
     following entries:
 
@@ -110,7 +111,7 @@ def read_config() -> dict:
     Returns the parsed configuration as `dict'.
     """
     cp = configparser.ConfigParser()
-    cp.read(os.path.expanduser('~/.imglocaterc'))
+    cp.read(os.path.expanduser(config_file))
 
     config = {
         'weights': cp.get('imglocate', 'weights', fallback=None),
@@ -336,6 +337,8 @@ if __name__ == '__main__':
         description='Locate objects in images'
     )
     sp = ap.add_subparsers(dest='action', help='action')
+    ap.add_argument('-c', type=str, default='~/.imglocaterc',
+                   metavar='config_file', help='configuration file')
 
     # annotate subcommand
     asp = sp.add_parser('annotate', help='annotate images')
@@ -356,7 +359,7 @@ if __name__ == '__main__':
     args = ap.parse_args()
 
     if args.action == 'annotate':
-        config = read_config()
+        config = read_config(args.c)
         annotate(args.images, config, simulate=args.s, force=args.f)
         sys.exit(0)
 
