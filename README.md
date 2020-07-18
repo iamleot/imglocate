@@ -1,3 +1,4 @@
+![Lint with flake8](https://github.com/iamleot/imglocate/workflows/Lint%20with%20flake8/badge.svg)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/iamleot/imglocate.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/iamleot/imglocate/alerts/)
 
 # imglocate
