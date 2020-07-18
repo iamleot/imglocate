@@ -295,7 +295,7 @@ def annotate(images: List[str], config: dict, simulate: bool = False,
             if i > 0:
                 print()
             print('{image}:'.format(image=image))
-            print(annotations_text)
+            print(annotations_text, end='')
         else:
             logging.info('Writing annotations in: %s', annotations_file)
             with open(annotations_file, mode='w') as f:
