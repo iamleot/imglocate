@@ -28,6 +28,7 @@ diningtable     0.2602041959762573      252     326     268     185
 ## Configuration
 
 imglocate needs to be configured before it can be used.
+A configuration file can be provided via the `-c` option.
 By default the configuration file `~/.imglocaterc` is used.
 
 The configuration field should have an `[imglocate]` section and should
@@ -62,7 +63,7 @@ The frameworks supported are the ones supported by
 
 ```
 % imglocate -h
-usage: imglocate [-h] {annotate,search} ...
+usage: imglocate [-h] [-c config_file] {annotate,search} ...
 
 Locate objects in images
 
@@ -73,4 +74,5 @@ positional arguments:
 
 optional arguments:
   -h, --help         show this help message and exit
+  -c config_file     configuration file
 ```
