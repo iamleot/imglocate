@@ -7,6 +7,8 @@ to detect objects in images and write annotations in separate text
 files as TSV (tab-separated values) containing: label, confidence and
 bounding box (as an x, y, height, width tuple).
 
+Annotating an image is simple as `imglocate annotate -s`!:
+
 ```
 % imglocate annotate -s office_at_night.jpg
 office_at_night.jpg:
@@ -15,6 +17,9 @@ chair   0.7023809552192688      110     264     86      141
 person  0.5752358436584473      363     276     46      70
 diningtable     0.2602041959762573      252     326     268     185
 ```
+
+...and, the corresponding image with bounded boxes drawed via
+`draw_bounding_boxes.py` helper script:
 
 ![Office at Night, Edward Hopper (1940), oil-on-canvas annotated via imglocate (chair, person, diningtable, person)](/examples/office_at_night.annotated.jpg)
 
