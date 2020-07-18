@@ -51,3 +51,10 @@ jobs:
         flake8 . --select=E9,F63,F7,F82 --show-source
         # exit-zero treats all errors as warnings.
         flake8 . --exit-zero --max-complexity=10
+    - name: Test imglocate
+      shell: bash
+      run: |
+        # copy yolov3.labels accordingly imagelocaterc used
+        cp examples/yolov3.labels ~/.imglocate
+        # compare existent TSV with imglocate generated one
+        cmp examples/office_at_night.jpg.txt <(./imglocate.py -c examples/imglocaterc annotate -fs examples/office_at_night.jpg | sed -n '2,$p')
