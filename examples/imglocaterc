@@ -1,0 +1,6 @@
+[imglocate]
+weights = ~/.imglocate/yolov3-tiny.weights
+config = ~/.imglocate/yolov3-tiny.cfg
+labels = ~/.imglocate/yolov3.labels
+confidence_threshold = 0.2
+nms_threshold = 0.2
