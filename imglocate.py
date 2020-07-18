@@ -236,20 +236,17 @@ def annotations(detected_objects: List[DetectedObject]):
     """
     Print all detected objects as TSV
     """
-    a = []
+    s = ''
     for o in detected_objects:
-        a.append('{label}\t{confidence}\t{x}\t{y}\t{width}\t{height}'.format(
+        s += '{label}\t{confidence}\t{x}\t{y}\t{width}\t{height}\n'.format(
             label=o.label,
             confidence=o.confidence,
             x=o.x,
             y=o.y,
             width=o.width,
-            height=o.height))
+            height=o.height)
 
-    if not a:
-        return ''
-
-    return '\n'.join(a)
+    return s
 
 
 def annotate(images: List[str], config: dict, simulate: bool = False,
