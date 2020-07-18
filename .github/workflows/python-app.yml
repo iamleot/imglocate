@@ -3,9 +3,10 @@ name: Lint with flake8
 on: [push, pull_request]
 
 jobs:
-  fetch:
+  build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Cache YOLOv3-tiny cfg and weights
       id: cache-yolov3-tiny
       uses: actions/cache@v2
@@ -18,12 +19,6 @@ jobs:
         mkdir -p ~/.imglocate
         curl -Ls -o ~/.imglocate/yolov3-tiny.cfg https://github.com/pjreddie/darknet/raw/master/cfg/yolov3-tiny.cfg
         curl -Ls -o ~/.imglocate/yolov3-tiny.weights https://pjreddie.com/media/files/yolov3-tiny.weights
-
-  build:
-    needs: fetch
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
