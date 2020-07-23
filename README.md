@@ -13,10 +13,10 @@ Annotating an image is simple as `imglocate annotate`!:
 ```
 % imglocate annotate office_at_night.jpg
 % cat office_at_night.jpg.txt
-person	0.8456319570541382	176	161	81	258
-chair	0.7067238688468933	109	264	87	141
-person	0.6016818881034851	363	276	46	70
-diningtable	0.26269155740737915	251	327	269	184
+person	0.84563	176	161	81	258
+chair	0.70672	109	264	87	141
+person	0.60168	363	276	46	70
+diningtable	0.26269	251	327	269	184
 ```
 
 ...and, the corresponding image with bounded boxes drawn via
