@@ -52,8 +52,8 @@ jobs:
         # copy yolov3.labels accordingly imagelocaterc used
         cp examples/yolov3.labels ~/.imglocate
         # compare existent TSV with imglocate generated one
-        diff -u examples/office_at_night.jpg.txt <(./imglocate.py -c examples/imglocaterc annotate -fs examples/office_at_night.jpg | sed -n '2,$p')
+        diff -u examples/office_at_night.jpg.txt <(./imglocate.py -vvv -c examples/imglocaterc annotate -fs examples/office_at_night.jpg | sed -n '2,$p')
         # search for a label present in the annotation
-        ./imglocate.py -c examples/imglocaterc search person examples/office_at_night.jpg | grep -q examples/office_at_night.jpg
+        ./imglocate.py -vvv -c examples/imglocaterc search person examples/office_at_night.jpg | grep -q examples/office_at_night.jpg
         # search for a label not present in the annotation (no output should be generated)
-        ./imglocate.py -c examples/imglocaterc search nonexistent examples/office_at_night.jpg | awk '{ exit 1 }'
+        ./imglocate.py -vvv -c examples/imglocaterc search nonexistent examples/office_at_night.jpg | awk '{ exit 1 }'
