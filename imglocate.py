@@ -193,18 +193,18 @@ def object_detection(image: str, weights: str,
     net = cv2.dnn.readNet(weights, config)
 
     # read the image
-    logging.debugging('Loading image %s', image)
+    logging.debug('Loading image %s', image)
     img = cv2.imread(image)
 
     # create 4d blob from image resizing it to 416x416
-    logging.debugging('Creating 4D blob')
+    logging.debug('Creating 4D blob')
     blob = cv2.dnn.blobFromImage(img, scale, (416, 416), (0, 0, 0), True, crop=False)
 
     # set the input
     net.setInput(blob)
 
     # run inference through the network
-    logging.debugging('Running inference through the network')
+    logging.debug('Running inference through the network')
     outs = net.forward(net.getUnconnectedOutLayersNames())
 
     last_layer = net.getLayer(net.getLayerNames()[-1])
@@ -231,7 +231,7 @@ def object_detection(image: str, weights: str,
                         width=width,
                         height=height))
 
-    logging.debugging('Running Non-Maximum Suppression')
+    logging.debug('Running Non-Maximum Suppression')
     indices = cv2.dnn.NMSBoxes(boxes(detected_objects), confidences(detected_objects), confidence_threshold, nms_threshold)
 
     return [detected_objects[i[0]] for i in indices]
