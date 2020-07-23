@@ -280,20 +280,20 @@ def annotate(images: List[str], config: dict, simulate: bool = False,
         if not force and \
            os.path.exists(annotations_file) and \
            os.path.getmtime(annotations_file) > os.path.getmtime(image):
-            logging.info('Reusing already existent annotations: %s',
+            logging.info('Reusing already existent annotations %s',
                          annotations_file)
             with open(annotations_file, mode='r') as f:
                 annotations_text = f.read()
 
         if not annotations_text:
-            logging.info('Detecting objects in: %s', image)
+            logging.info('Detecting objects in %s', image)
             detected_objects = object_detection(image,
                                                 config['weights'],
                                                 config['config'],
                                                 config['labels'],
                                                 config['confidence_threshold'],
                                                 config['nms_threshold'])
-            logging.info('Preparing annotations in: %s', image)
+            logging.info('Preparing annotations in %s', image)
             annotations_text = annotations(detected_objects)
 
         if simulate:
@@ -302,7 +302,7 @@ def annotate(images: List[str], config: dict, simulate: bool = False,
             print('{image}:'.format(image=image))
             print(annotations_text, end='')
         else:
-            logging.info('Writing annotations in: %s', annotations_file)
+            logging.info('Writing annotations in %s', annotations_file)
             with open(annotations_file, mode='w') as f:
                 f.write(annotations_text)
 
