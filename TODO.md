@@ -24,5 +24,7 @@ There are several known (and probably unknown) bugs:
 ##[error]Process completed with exit code 1.
 ```
 
-   It should be investigated if there are possible subtle platform
-   differences (but that will be probably not be easy).
+   There are possible subtle platform differences. However, diffing
+   working and non-working job run for the same commit no platform
+   difference could be found.
+   The problem is workarounded via commit 99c73aa.
