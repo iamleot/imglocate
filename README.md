@@ -63,7 +63,7 @@ The frameworks supported are the ones supported by
 
 ```
 % imglocate -h
-usage: imglocate [-h] [-c config_file] {annotate,search} ...
+usage: imglocate [-h] [-c config_file] [-v] {annotate,search} ...
 
 Locate objects in images
 
@@ -75,4 +75,5 @@ positional arguments:
 optional arguments:
   -h, --help         show this help message and exit
   -c config_file     configuration file
+  -v                 logging level
 ```
