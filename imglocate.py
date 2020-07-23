@@ -302,26 +302,24 @@ def annotate(images: List[str], config: dict, simulate: bool = False,
                 f.write(annotations_text)
 
 
-def search(label: str, directory: str) -> List[str]:
+def search(images: List[str], label: str) -> List[str]:
     """
-    Given a `label' and a `directory' search all images containing `label'.
+    Given a list of `images' search the ones with the label `label'.
 
-    Recursively search for `label' label in annotations file in directory and
-    return a list of all matching images.
+    Search for `label' label in annotations file of each corresponding image in
+    `images' and return a list of all matching images.
     """
-    images = []
+    matching_images = []
+    for image in images:
+        image = os.path.expanduser(image)
+        annotations_file = '{image}.txt'.format(image=image)
+        if os.path.isfile(annotations_file) and \
+           os.path.isfile(image):
+            annotations = read_annotations(annotations_file)
+            if label in [a[0] for a in annotations]:
+                matching_images.append(image)
 
-    for dirpath, dirnames, filenames in os.walk(directory):
-        for filename in filter(lambda s: s.endswith('.txt'), filenames):
-            annotations_file = os.path.join(dirpath, filename)
-            image = annotations_file.rstrip('.txt')
-            if os.path.isfile(annotations_file) and \
-               os.path.isfile(image):
-                annotations = read_annotations(annotations_file)
-                if label in [a[0] for a in annotations]:
-                    images.append(image)
-
-    return images
+    return matching_images
 
 
 if __name__ == '__main__':
@@ -350,8 +348,8 @@ if __name__ == '__main__':
     ssp = sp.add_parser('search', help='search annotated images')
     ssp.add_argument('label', type=str,
                     help='force regen of already existent annotations')
-    ssp.add_argument('directory', type=str,
-                    help='directory containing annotations')
+    ssp.add_argument('images', nargs='+', type=str, metavar='image',
+                    help='image to search')
 
     args = ap.parse_args()
 
@@ -361,7 +359,7 @@ if __name__ == '__main__':
         sys.exit(0)
 
     if args.action == 'search':
-        for image in search(args.label, args.directory):
+        for image in search(args.images, args.label):
             print(image)
         sys.exit(0)
 
