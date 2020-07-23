@@ -330,8 +330,6 @@ def search(images: List[str], label: str) -> List[str]:
 if __name__ == '__main__':
     import argparse
 
-    logging.basicConfig(format='%(levelname)s:%(funcName)s:%(message)s')
-
     ap = argparse.ArgumentParser(
         prog='imglocate',
         description='Locate objects in images'
@@ -339,6 +337,8 @@ if __name__ == '__main__':
     sp = ap.add_subparsers(dest='action', help='action')
     ap.add_argument('-c', type=str, default='~/.imglocaterc',
                    metavar='config_file', help='configuration file')
+    ap.add_argument('-v', action='count', default=0,
+                   help='logging level')
 
     # annotate subcommand
     asp = sp.add_parser('annotate', help='annotate images')
@@ -357,6 +357,17 @@ if __name__ == '__main__':
                     help='image to search')
 
     args = ap.parse_args()
+
+    if args.v == 0:
+        level = logging.ERROR
+    elif args.v == 1:
+        level = logging.WARNING
+    elif args.v == 2:
+        level = logging.INFO
+    else:
+        level = logging.DEBUG
+
+    logging.basicConfig(format='%(levelname)s:%(funcName)s:%(message)s', level=level)
 
     if args.action == 'annotate':
         config = read_config(args.c)
