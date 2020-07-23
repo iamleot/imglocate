@@ -271,6 +271,7 @@ def annotate(images: List[str], config: dict, simulate: bool = False,
     """
     for i, image in enumerate(images):
         image = os.path.expanduser(image)
+        logging.info('Annotating %s', image)
         annotations_file = '{image}.txt'.format(image=image)
         annotations_text = ''
 
@@ -316,10 +317,12 @@ def search(images: List[str], label: str) -> List[str]:
     """
     matching_images = []
     for image in images:
+        logging.info('Searching label %s in %s', label, image)
         image = os.path.expanduser(image)
         annotations_file = '{image}.txt'.format(image=image)
         if os.path.isfile(annotations_file) and \
            os.path.isfile(image):
+            logging.info('Reading annotations in %s', annotations_file)
             annotations = read_annotations(annotations_file)
             if label in [a[0] for a in annotations]:
                 matching_images.append(image)
