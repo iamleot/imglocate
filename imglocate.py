@@ -238,7 +238,7 @@ def annotations(detected_objects: List[DetectedObject]):
     """
     s = ''
     for o in detected_objects:
-        s += '{label}\t{confidence}\t{x}\t{y}\t{width}\t{height}\n'.format(
+        s += '{label}\t{confidence:.5f}\t{x}\t{y}\t{width}\t{height}\n'.format(
             label=o.label,
             confidence=o.confidence,
             x=o.x,
