@@ -1,5 +1,6 @@
 imglocate should be considered mostly feature complete.
-There are several known (and probably unknown) bugs:
+There are at least some known (and probably several unknown!) bugs and
+possible TODOs:
 
 
 ## TODO/Known bugs
@@ -28,3 +29,8 @@ There are several known (and probably unknown) bugs:
    working and non-working job run for the same commit no platform
    difference could be found.
    The problem is workarounded via commit 99c73aa.
+
+
+## Possible TODO
+
+ - Enable a `-r' option to recursively search images in directories
