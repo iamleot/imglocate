@@ -8,15 +8,15 @@ to detect objects in images and write annotations in separate text
 files as TSV (tab-separated values) containing: label, confidence and
 bounding box (as an x, y, height, width tuple).
 
-Annotating an image is simple as `imglocate annotate -s`!:
+Annotating an image is simple as `imglocate annotate`!:
 
 ```
-% imglocate annotate -s office_at_night.jpg
-office_at_night.jpg:
-person  0.8503227829933167      176     160     81      259
-chair   0.7023809552192688      110     264     86      141
-person  0.5752358436584473      363     276     46      70
-diningtable     0.2602041959762573      252     326     268     185
+% imglocate annotate office_at_night.jpg
+% cat office_at_night.jpg.txt
+person	0.8456319570541382	176	161	81	258
+chair	0.7067238688468933	109	264	87	141
+person	0.6016818881034851	363	276	46	70
+diningtable	0.26269155740737915	251	327	269	184
 ```
 
 ...and, the corresponding image with bounded boxes drawn via
