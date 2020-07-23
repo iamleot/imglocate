@@ -189,7 +189,7 @@ def object_detection(image: str, weights: str,
         class_labels = tuple(line.strip() for line in f.readlines())
 
     # read deep learning network
-    logging.debug('Loading deep learning network with weight/config %s/%s', weights, config)
+    logging.debug('Loading deep learning network with weights %s and config %s', weights, config)
     net = cv2.dnn.readNet(weights, config)
 
     # read the image
