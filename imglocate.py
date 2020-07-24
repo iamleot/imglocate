@@ -28,6 +28,18 @@
 #
 
 
+"""
+Locate objects in images and write annotations of detected objects as TSV
+
+imglocate is a Python 3 script that uses OpenCV to detect objects in
+images and write annotations in separate text files as TSV
+(tab-separated values) containing, in order:
+
+ - label (object detected)
+ - confidence
+ - bounding box (x, y, height, width)
+"""
+
 from typing import List
 import collections
 import configparser
