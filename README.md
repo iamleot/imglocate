@@ -78,3 +78,28 @@ optional arguments:
   -c config_file     configuration file
   -v                 logging level
 ```
+
+```
+% imglocate annotate -h
+usage: imglocate annotate [-h] [-f] [-s] image [image ...]
+
+positional arguments:
+  image       image to annotate
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -f          force regen of already existent annotations
+  -s          only print annotations (do not write them)
+```
+
+```
+% imglocate search -h
+usage: imglocate search [-h] label image [image ...]
+
+positional arguments:
+  label       force regen of already existent annotations
+  image       image to search
+
+optional arguments:
+  -h, --help  show this help message and exit
+```
