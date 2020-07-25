@@ -62,6 +62,9 @@ The frameworks supported are the ones supported by
 
 ## Usage
 
+imglocate supports two subcommands: `annotate` and `search`.
+A short usage message of imglocate can be get via the `-h` option:
+
 ```
 % imglocate -h
 usage: imglocate [-h] [-c config_file] [-v] {annotate,search} ...
@@ -79,6 +82,34 @@ optional arguments:
   -v                 logging level
 ```
 
+The following global options are supported:
+
+ - `-h` prints a short usage message about `imglocate` or its subcommands
+ - `-c` specify an alternative configuration file instead of using the
+   default `~/.imglocaterc`
+ - `-v` increase logging level, can be specified multiple times
+
+
+### annotate
+
+`annotate` subcommand annotate all images passed as arguments and
+stores the annotations in a TSV (tab-separated values) text file in the
+same path of each image appending to them the `.txt` suffix.
+
+Every line in the annotations file correspond to a detected object.
+The fields are, in order:
+
+ - label (object detected)
+ - confidence
+ - x coordinate of the bounding box
+ - y coordinate of the bounding box
+ - height of the bounding box
+ - width of the bounding box tuple
+
+By default, if the annotations file for the image already exists and
+its `mtime` is newer then the `mtime` of image no object detection is
+performed.
+
 ```
 % imglocate annotate -h
 usage: imglocate annotate [-h] [-f] [-s] image [image ...]
@@ -91,6 +122,20 @@ optional arguments:
   -f          force regen of already existent annotations
   -s          only print annotations (do not write them)
 ```
+
+The following global options are supported:
+
+ - `-f` always do the object detection (also if there are annotations with
+   an `mtime` newer than the image)
+ - `-s` do not write any annotations file, print the annotations to the
+   standard output
+
+
+### search
+
+`search` subcommand, given one or more `image` that were previously
+annotated via `imglocate annotate`, search if label `label` print all
+the resulting images containing the label to the standard output.
 
 ```
 % imglocate search -h
