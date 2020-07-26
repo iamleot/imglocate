@@ -125,6 +125,7 @@ optional arguments:
 
 The following options are supported:
 
+ - `-h` prints a short usage message
  - `-f` always do the object detection (also if there are annotations with
    an `mtime` newer than the image)
  - `-s` do not write any annotations file, print the annotations to the
@@ -148,6 +149,10 @@ positional arguments:
 optional arguments:
   -h, --help  show this help message and exit
 ```
+
+The following options are supported:
+
+ - `-h` prints a short usage message
 
 
 ## Examples
