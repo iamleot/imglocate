@@ -95,11 +95,13 @@ def read_annotations(filename: str) -> List[tuple]:
                                             delimiter='\t',
                                             doublequote=False,
                                             quoting=csv.QUOTE_NONE)
-            for row in annotations_reader:
+            for i, row in enumerate(annotations_reader, 1):
                 if len(row) == 6:
                     label, confidence, x, y, height, width = row
                     annotations.append((str(label), int(x), int(y),
                                         int(height), int(width)))
+                else:
+                    logging.warning('Invalid number of fields in line %d: %s, ignoring', i, '\t'.join(row))
     except OSError as e:
         logging.warning('Could not open %s: %s, ignoring', filename, e)
 
