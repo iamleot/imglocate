@@ -157,4 +157,34 @@ The following options are supported:
 
 ## Examples
 
-*TODO*: add some trivial and non trivial usage examples
+To annotate all `*.jpg` images in the current directory:
+
+```
+% imglocate annotate *.jpg
+```
+
+After they are annotated, to search all images with a person:
+
+```
+% imglocate search person *.jpg
+```
+
+To recursively annotate all `*.jpg` and `*.png` images in a directory and
+parallelize the annotation to always have 4 instance of imglocate running at the
+same time against a set of 5 images per instance (using
+[find(1)](https://netbsd.gw.com/cgi-bin/man-cgi?find+1) and
+[xargs(1)](https://netbsd.gw.com/cgi-bin/man-cgi?xargs+1)):
+
+```
+% find . \( -iname '*.jpg' -or -iname '*.png' \) -and -print0 |
+    xargs -0 -n 5 -P 4 imglocate annotate
+```
+
+Given the simple TSV format of annotations they can be easily parsed
+via external tools.
+For example, to find all images with at least 5 person in it, we can
+write a simple AWK one-liner that does that:
+
+```
+% awk -F '\t' '$1 == "person" { a[FILENAME]++ } END { for (i in a) { if (a[i] >= 5) { print substr(i, 1, length(i) - 4) } } }' *.txt
+```
