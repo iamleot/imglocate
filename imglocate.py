@@ -257,9 +257,25 @@ def object_detection(image: str, weights: str,
     return [detected_objects[i[0]] for i in indices]
 
 
-def annotations(detected_objects: List[DetectedObject]):
+def annotations(detected_objects: List[DetectedObject]) -> str:
     """
-    Print all detected objects as TSV
+    Format detected objects as TSV
+
+    Given a list of DetectedObject `detected_objects', return a string
+    with each field separated by a tab, with the following elements (in
+    the corresponding order):
+
+     - label
+     - confidence
+     - x
+     - y
+     - height
+     - width
+
+    A newline is also added at the end of the string.
+
+    If the `detected_objects' list in empty the returned string will be
+    empty as well.
     """
     s = ''
     for o in detected_objects:
