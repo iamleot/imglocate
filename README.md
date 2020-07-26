@@ -123,7 +123,7 @@ optional arguments:
   -s          only print annotations (do not write them)
 ```
 
-The following global options are supported:
+The following options are supported:
 
  - `-f` always do the object detection (also if there are annotations with
    an `mtime` newer than the image)
