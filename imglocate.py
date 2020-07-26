@@ -101,7 +101,9 @@ def read_annotations(filename: str) -> List[tuple]:
                     annotations.append((str(label), int(x), int(y),
                                         int(height), int(width)))
                 else:
-                    logging.warning('Invalid number of fields in line %d: %s, ignoring', i, '\t'.join(row))
+                    logging.warning(
+                        'Invalid number of fields in line %d: %s, ignoring',
+                        i, '\t'.join(row))
     except OSError as e:
         logging.warning('Could not open %s: %s, ignoring', filename, e)
 
@@ -136,7 +138,8 @@ def read_config(config_file: str = IMGLOCATE_DEFAULT_CONFIG) -> dict:
         'weights': cp.get('imglocate', 'weights', fallback=None),
         'config': cp.get('imglocate', 'config', fallback=None),
         'labels': cp.get('imglocate', 'labels', fallback=None),
-        'confidence_threshold': cp.get('imglocate', 'confidence_threshold', fallback=None),
+        'confidence_threshold': cp.get('imglocate', 'confidence_threshold',
+                                       fallback=None),
         'nms_threshold': cp.get('imglocate', 'nms_threshold', fallback=None),
     }
 
@@ -164,8 +167,8 @@ def boxes(detected_objects: List[DetectedObject]) -> List[List]:
     Given a list of DetectedObject return bounding boxes as a list of list.
 
     boxes() takes a list of DetectedObject `detected_objects' and return
-    bounding boxes as a list of list.  Each element of the returned list (single
-    bounding box) has the following element:
+    bounding boxes as a list of list.  Each element of the returned list
+    (single bounding box) has the following element:
 
      - x
      - y
@@ -193,9 +196,9 @@ def object_detection(image: str, weights: str,
     """
     Perform object detection given an image.
 
-    object_detection() takes a path of an `image', `weights' and `config' of the
-    deep learning network (passed to `cv2.dnn.readNet()'), a path to text file
-    `labels' containing corresponding labels one per line and optional
+    object_detection() takes a path of an `image', `weights' and `config' of
+    the deep learning network (passed to `cv2.dnn.readNet()'), a path to text
+    file `labels' containing corresponding labels one per line and optional
     `confidence_threshold', `nms_threshold' and `scale'.
 
     It return a list of DetectedObject found (or an empty list when no object
@@ -206,10 +209,12 @@ def object_detection(image: str, weights: str,
 
     logging.debug('Reading labels from %s', class_labels)
     with open(labels, mode='r') as f:
-        class_labels = tuple(line.strip().expandtabs() for line in f.readlines())
+        class_labels = tuple(line.strip().expandtabs()
+                             for line in f.readlines())
 
     # read deep learning network
-    logging.debug('Loading deep learning network with weights %s and config %s', weights, config)
+    logging.debug('Loading deep learning network: weights %s, config %s',
+                  weights, config)
     net = cv2.dnn.readNet(weights, config)
 
     # read the image
@@ -218,7 +223,8 @@ def object_detection(image: str, weights: str,
 
     # create 4d blob from image resizing it to 416x416
     logging.debug('Creating 4D blob')
-    blob = cv2.dnn.blobFromImage(img, scale, (416, 416), (0, 0, 0), True, crop=False)
+    blob = cv2.dnn.blobFromImage(img, scale, (416, 416), (0, 0, 0), True,
+                                 crop=False)
 
     # set the input
     net.setInput(blob)
@@ -252,7 +258,9 @@ def object_detection(image: str, weights: str,
                         height=height))
 
     logging.debug('Running Non-Maximum Suppression')
-    indices = cv2.dnn.NMSBoxes(boxes(detected_objects), confidences(detected_objects), confidence_threshold, nms_threshold)
+    indices = cv2.dnn.NMSBoxes(boxes(detected_objects),
+                               confidences(detected_objects),
+                               confidence_threshold, nms_threshold)
 
     return [detected_objects[i[0]] for i in indices]
 
@@ -369,31 +377,29 @@ def search(images: List[str], label: str) -> List[str]:
 if __name__ == '__main__':
     import argparse
 
-    ap = argparse.ArgumentParser(
-        prog='imglocate',
-        description='Locate objects in images'
-    )
+    ap = argparse.ArgumentParser(prog='imglocate',
+                                 description='Locate objects in images')
     sp = ap.add_subparsers(dest='action', help='action')
     ap.add_argument('-c', type=str, default=IMGLOCATE_DEFAULT_CONFIG,
-                   metavar='config_file', help='configuration file')
+                    metavar='config_file', help='configuration file')
     ap.add_argument('-v', action='count', default=0,
-                   help='logging level')
+                    help='logging level')
 
     # annotate subcommand
     asp = sp.add_parser('annotate', help='annotate images')
     asp.add_argument('-f', action='store_true',
-                    help='force regen of already existent annotations')
+                     help='force regen of already existent annotations')
     asp.add_argument('-s', action='store_true',
-                    help='only print annotations (do not write them)')
+                     help='only print annotations (do not write them)')
     asp.add_argument('images', nargs='+', type=str, metavar='image',
-                    help='image to annotate')
+                     help='image to annotate')
 
     # search subcommand
     ssp = sp.add_parser('search', help='search annotated images')
     ssp.add_argument('label', type=str,
-                    help='force regen of already existent annotations')
+                     help='force regen of already existent annotations')
     ssp.add_argument('images', nargs='+', type=str, metavar='image',
-                    help='image to search')
+                     help='image to search')
 
     args = ap.parse_args()
 
@@ -406,7 +412,8 @@ if __name__ == '__main__':
     else:
         level = logging.DEBUG
 
-    logging.basicConfig(format='%(levelname)s:%(funcName)s:%(message)s', level=level)
+    logging.basicConfig(format='%(levelname)s:%(funcName)s:%(message)s',
+                        level=level)
 
     if args.action == 'annotate':
         config = read_config(args.c)
