@@ -77,10 +77,11 @@ def read_annotations(filename: str) -> List[tuple]:
     """
     Read annotations from a file.
 
-    Given annotations in `file' return a list of annotations in the form of a
-    tuple with the following elements (in the corresponding order):
+    Given annotations in file `filename' return a list of annotations in the
+    form of a tuple with the following elements (in the corresponding order):
 
      - label
+     - confidence
      - x
      - y
      - height
