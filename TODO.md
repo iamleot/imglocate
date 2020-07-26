@@ -33,4 +33,4 @@ possible TODOs:
 
 ## Possible TODO
 
- - Enable a `-r' option to recursively search images in directories
+ - Add an `-r' option to recursively search images in directories
