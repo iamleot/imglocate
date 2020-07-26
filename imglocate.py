@@ -110,12 +110,12 @@ def read_annotations(filename: str) -> List[tuple]:
 
 def read_config(config_file: str = IMGLOCATE_DEFAULT_CONFIG) -> dict:
     """
-    Read configuration file config_file.
+    Read configuration file `config_file'.
 
-    Read the configuration file config_file, if not specified `~/.imglocaterc',
-    via `configparser'.
-    The configuration file should have a `[imglocate]' main section and the
-    following entries:
+    Read the configuration file `config_file', if not provided
+    IMGLOCATE_DEFAULT_CONFIG, via `configparser'.
+    The configuration file should have an `[imglocate]' main section and all
+    the following entries:
 
      - weights: path to the deep learning network weights
      - config: path to the deep learning network config
@@ -125,7 +125,7 @@ def read_config(config_file: str = IMGLOCATE_DEFAULT_CONFIG) -> dict:
      - nms_threshold: NMS (Non-Maximum Suppression) threshold
 
     If the file is not present or a configuration entry is missing the program
-    exit with a 1 exit status.
+    exit with an exit status 1.
 
     Returns the parsed configuration as `dict'.
     """
