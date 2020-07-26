@@ -289,7 +289,7 @@ def annotate(images: List[str], config: dict, simulate: bool = False,
         image = os.path.expanduser(image)
         logging.info('Annotating %s', image)
         annotations_file = '{image}.txt'.format(image=image)
-        annotations_text = ''
+        annotations_text = None
 
         # Read possible already existent annotation if the regen is not forced
         # and the mtime of the annotations file is newer than the mtime of the
@@ -302,7 +302,7 @@ def annotate(images: List[str], config: dict, simulate: bool = False,
             with open(annotations_file, mode='r') as f:
                 annotations_text = f.read()
 
-        if not annotations_text:
+        if annotations_text is None:
             logging.info('Detecting objects in %s', image)
             detected_objects = object_detection(image,
                                                 config['weights'],
