@@ -204,6 +204,7 @@ def object_detection(image: str, weights: str,
     class_labels = ()
     detected_objects = []
 
+    logging.debug('Reading labels from %s', class_labels)
     with open(labels, mode='r') as f:
         class_labels = tuple(line.strip().expandtabs() for line in f.readlines())
 
