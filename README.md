@@ -107,8 +107,8 @@ The fields are, in order:
  - width of the bounding box tuple
 
 By default, if the annotations file for the image already exists and
-its `mtime` is newer then the `mtime` of image no object detection is
-performed.
+its last modification time is newer then the last modification time of
+image no object detection is performed.
 
 ```
 % imglocate annotate -h
@@ -127,7 +127,7 @@ The following options are supported:
 
  - `-h` prints a short usage message
  - `-f` always do the object detection (also if there are annotations with
-   an `mtime` newer than the image)
+   a last modification time newer than the image)
  - `-s` do not write any annotations file, print the annotations to the
    standard output
 
