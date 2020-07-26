@@ -202,7 +202,7 @@ def object_detection(image: str, weights: str,
     detected_objects = []
 
     with open(labels, mode='r') as f:
-        class_labels = tuple(line.strip() for line in f.readlines())
+        class_labels = tuple(line.strip().expandtabs() for line in f.readlines())
 
     # read deep learning network
     logging.debug('Loading deep learning network with weights %s and config %s', weights, config)
