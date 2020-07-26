@@ -69,6 +69,10 @@ DetectedObject.width.__doc__ = 'width of the bounding box'
 DetectedObject.height.__doc__ = 'height of the bounding box'
 
 
+IMGLOCATE_DEFAULT_CONFIG = os.path.join(os.path.expanduser('~'),
+                                        '.imglocaterc')
+
+
 def read_annotations(filename: str) -> List[tuple]:
     """
     Read annotations from a file.
@@ -101,7 +105,7 @@ def read_annotations(filename: str) -> List[tuple]:
     return annotations
 
 
-def read_config(config_file: str = '~/.imglocaterc') -> dict:
+def read_config(config_file: str = IMGLOCATE_DEFAULT_CONFIG) -> dict:
     """
     Read configuration file config_file.
 
@@ -350,7 +354,7 @@ if __name__ == '__main__':
         description='Locate objects in images'
     )
     sp = ap.add_subparsers(dest='action', help='action')
-    ap.add_argument('-c', type=str, default='~/.imglocaterc',
+    ap.add_argument('-c', type=str, default=IMGLOCATE_DEFAULT_CONFIG,
                    metavar='config_file', help='configuration file')
     ap.add_argument('-v', action='count', default=0,
                    help='logging level')
