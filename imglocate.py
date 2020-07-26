@@ -196,7 +196,7 @@ def object_detection(image: str, weights: str,
     object_detection() takes a path of an `image', `weights' and `config' of the
     deep learning network (passed to `cv2.dnn.readNet()'), a path to text file
     `labels' containing corresponding labels one per line and optional
-    `confidence_threshold' and `nms_threshold'.
+    `confidence_threshold', `nms_threshold' and `scale'.
 
     It return a list of DetectedObject found (or an empty list when no object
     could be found).
