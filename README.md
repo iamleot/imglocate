@@ -176,7 +176,7 @@ same time against a set of 5 images per instance (using
 [xargs(1)](https://netbsd.gw.com/cgi-bin/man-cgi?xargs+1)):
 
 ```
-% find . \( -iname '*.jpg' -or -iname '*.png' \) -and -print0 |
+% find . \( -iname '*.jpg' -or -iname '*.png' \) -print0 |
     xargs -0 -n 5 -P 4 imglocate annotate
 ```
 
