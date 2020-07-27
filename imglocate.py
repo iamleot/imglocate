@@ -37,7 +37,7 @@ images and write annotations in separate text files as TSV
 
  - label (object detected)
  - confidence
- - bounding box (x, y, height, width)
+ - bounding box (x, y, width, height)
 """
 
 from typing import List
@@ -84,8 +84,8 @@ def read_annotations(filename: str) -> List[tuple]:
      - confidence
      - x
      - y
-     - height
      - width
+     - height
     """
     annotations = []
 
@@ -97,9 +97,9 @@ def read_annotations(filename: str) -> List[tuple]:
                                             quoting=csv.QUOTE_NONE)
             for i, row in enumerate(annotations_reader, 1):
                 if len(row) == 6:
-                    label, confidence, x, y, height, width = row
+                    label, confidence, x, y, width, height = row
                     annotations.append((str(label), int(x), int(y),
-                                        int(height), int(width)))
+                                        int(width), int(height)))
                 else:
                     logging.warning(
                         'Invalid number of fields in line %d: %s, ignoring',
@@ -277,8 +277,8 @@ def annotations(detected_objects: List[DetectedObject]) -> str:
      - confidence
      - x
      - y
-     - height
      - width
+     - height
 
     A newline is also added at the end of the string.
 

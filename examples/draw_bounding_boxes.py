@@ -36,13 +36,13 @@ import cv2
 
 
 def draw_bounding_box(img, label: str,
-                      x: int, y: int, height: int, width: int) -> None:
+                      x: int, y: int, width: int, height: int) -> None:
     """
     Draw a bounding box
 
     Given an opened image via cv2.imread(), draw a bounding box for the label
-    `label' inside a rectangle with the coordinates (x, y) and area of (height,
-    width).
+    `label' inside a rectangle with the coordinates (x, y) and area of (width,
+    height).
     """
     colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (0, 255, 255), (255, 0, 255), (255, 255, 0)]
     color = colors[len(label) % len(colors)]
@@ -62,8 +62,8 @@ def read_annotations(filename: str) -> List[tuple]:
      - label
      - x
      - y
-     - height
      - width
+     - height
     """
     annotations = []
 
@@ -75,9 +75,9 @@ def read_annotations(filename: str) -> List[tuple]:
                                             quoting=csv.QUOTE_NONE)
             for row in annotations_reader:
                 if len(row) == 6:
-                    label, confidence, x, y, height, width = row
+                    label, confidence, x, y, width, height = row
                     annotations.append((str(label), int(x), int(y),
-                                        int(height), int(width)))
+                                        int(width), int(height)))
     except OSError as e:
         print('Could not open {filename}: {e}, ignoring'.format(
               filename=filename, e=e), file=sys.stderr)
