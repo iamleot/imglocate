@@ -6,7 +6,7 @@
 imglocate is a Python 3 script that uses [OpenCV](https://opencv.org/)
 to detect objects in images and write annotations in separate text
 files as TSV (tab-separated values) containing: label (object
-detected), confidence and bounding box (as an x, y, height, width
+detected), confidence and bounding box (as an x, y, width, height
 tuple).
 
 Annotating an image is simple as `imglocate annotate`!:
@@ -103,8 +103,8 @@ The fields are, in order:
  - confidence
  - x coordinate of the bounding box
  - y coordinate of the bounding box
- - height of the bounding box
  - width of the bounding box tuple
+ - height of the bounding box
 
 By default, if the annotations file for the image already exists and
 its last modification time is newer then the last modification time of
