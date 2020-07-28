@@ -28,7 +28,7 @@ possible TODOs:
    There are possible subtle platform differences. However, diffing
    working and non-working job run for the same commit no platform
    difference could be found.
-   The problem is workarounded via commit 99c73aa.
+   The problem is workaround-ed via commit 99c73aa.
 
 
 ## Possible TODO
