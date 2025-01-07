@@ -1,3 +1,5 @@
+**NOTE**: As of 2025-01-07 this tool is no longer maintained.
+
 # imglocate
 
 imglocate is a Python 3 script that uses [OpenCV](https://opencv.org/)
