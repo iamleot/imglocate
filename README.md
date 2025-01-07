@@ -1,6 +1,3 @@
-![Check and test imglocate](https://github.com/iamleot/imglocate/workflows/Check%20and%20test%20imglocate/badge.svg)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/iamleot/imglocate.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/iamleot/imglocate/alerts/)
-
 # imglocate
 
 imglocate is a Python 3 script that uses [OpenCV](https://opencv.org/)
